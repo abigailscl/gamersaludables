@@ -85,8 +85,16 @@ class OptionsMenu(Menu):
                 self.game.curr_menu = self.game.main_menu
                 self.run_display = False
             self.game.display.fill(self.game.BLACK)      
-            self.game.inputName()
+            self.game.input_name()
+            self.check_input()
             self.game.reset_keys()
+
+    def check_input(self):
+        if self.game.START_KEY:
+            self.game.connection.insert_user(self.game.user_text)
+            self.game.user_text = ""
+            self.game.connection.print_users()
+            
             
 
 class CreditsMenu(Menu):
