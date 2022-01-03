@@ -17,6 +17,9 @@ class Game():
         self.options = OptionsMenu(self)
         self.credits = CreditsMenu(self)
         self.curr_menu = self.main_menu
+        self.input_rect = pygame.Rect(200, 50, 30, 30)
+        self.color = pygame.Color(self.WHITE)
+        self.user_text = ""
 
     def game_loop(self):
         while self.playing:
@@ -38,13 +41,17 @@ class Game():
                 self.curr_menu.run_display = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
+                    self.user_text =""
                     self.START_KEY = True
-                if event.key == pygame.K_BACKSPACE:
+                if event.key == pygame.K_LEFT:
                     self.BACK_KEY = True
                 if event.key == pygame.K_DOWN:
+                    self.user_text = ""
                     self.DOWN_KEY = True
                 if event.key == pygame.K_UP:
+                    self.user_text = ""
                     self.UP_KEY = True
+                self.user_text += event.unicode
 
     def reset_keys(self):
         self.UP_KEY, self.DOWN_KEY, self.START_KEY, self.BACK_KEY = False, False, False, False
@@ -55,3 +62,15 @@ class Game():
         text_rect = text_surface.get_rect()
         text_rect.center = (x,y)
         self.display.blit(text_surface,text_rect)
+    
+    def inputName(self):
+        
+        self.window.blit(self.display, (0, 0))
+        self.window.fill((0,0,0))
+        pygame.draw.rect(self.window, self.color, self.input_rect, 2)
+        font = pygame.font.Font(self.font_name,15)
+        text_surface = font.render(self.user_text, True, self.WHITE)
+        self.window.blit(text_surface, (self.input_rect.x +10, self.input_rect.y +10))
+        self.input_rect.w = text_surface.get_width() + 20
+        pygame.display.update()
+        
