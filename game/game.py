@@ -1,13 +1,14 @@
 import pygame
+from pygame.locals import*
 from menu import *
-from dataBaseConnection import Connection
+from register import Regitration
 
 class Game():
     def __init__(self):
         pygame.init()
         self.running, self.playing = True, False
         self.UP_KEY, self.DOWN_KEY, self.START_KEY, self.BACK_KEY = False, False, False, False
-        self.DISPLAY_W, self.DISPLAY_H = 480, 270
+        self.DISPLAY_W, self.DISPLAY_H = 640, 480
         self.display = pygame.Surface((self.DISPLAY_W,self.DISPLAY_H))
         self.window = pygame.display.set_mode(((self.DISPLAY_W,self.DISPLAY_H)))
         self.font_name = '8-BIT WONDER.TTF'
@@ -20,15 +21,17 @@ class Game():
         self.input_rect = pygame.Rect(200, 50, 30, 30)
         self.color = pygame.Color(self.WHITE)
         self.user_text = ""
-        self.connection = Connection()
+        self.registration = Regitration()
+        self.img = pygame.image.load('canva2.bmp')
 
     def game_loop(self):
         while self.playing:
             self.check_events()
             if self.START_KEY:
                 self.playing= False
-            self.display.fill(self.BLACK)
-            self.draw_text('Thanks for Playing', 20, self.DISPLAY_W/2, self.DISPLAY_H/2)
+            #self.display.fill(self.BLACK)
+            self.display.blit(self.img, (0,0))
+            self.draw_text('Gracias por jugar', 20, self.DISPLAY_W/2, self.DISPLAY_H/2)
             self.window.blit(self.display, (0,0))
             pygame.display.update()
             self.reset_keys()
@@ -71,4 +74,7 @@ class Game():
         self.window.blit(text_surface, (self.input_rect.x +10, self.input_rect.y +10))
         self.input_rect.w = text_surface.get_width() + 20
         pygame.display.update()
+    
+    def register_user(self):
+        self.registration.main_screen()
         

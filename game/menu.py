@@ -30,7 +30,8 @@ class MainMenu(Menu):
         while self.run_display:
             self.game.check_events()
             self.check_input()
-            self.game.display.fill(self.game.BLACK)
+            #self.game.display.fill(self.game.BLACK)
+            self.game.display.blit(self.game.img, (0,0))
             self.game.draw_text('Menu', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 20)
             self.game.draw_text("Iniciar juego", 20, self.startx, self.starty)
             self.game.draw_text("Registrarse", 20, self.optionsx, self.optionsy)
@@ -84,19 +85,16 @@ class OptionsMenu(Menu):
             if self.game.START_KEY or self.game.BACK_KEY:
                 self.game.curr_menu = self.game.main_menu
                 self.run_display = False
-            self.game.display.fill(self.game.BLACK)      
-            self.game.input_name()
-            self.check_input()
-            self.game.reset_keys()
+            #self.game.display.fill(self.game.BLACK)  
+            self.game.display.blit(self.game.img, (0,0))    
+            self.game.register_user()
 
     def check_input(self):
         if self.game.START_KEY:
-            self.game.connection.insert_user(self.game.user_text)
             self.game.user_text = ""
-            self.game.connection.print_users()
+           # self.game.connection.print_users()
             
-            
-
+        
 class CreditsMenu(Menu):
     def __init__(self, game):
         Menu.__init__(self, game)
@@ -108,7 +106,8 @@ class CreditsMenu(Menu):
             if self.game.START_KEY or self.game.BACK_KEY:
                 self.game.curr_menu = self.game.main_menu
                 self.run_display = False
-            self.game.display.fill(self.game.BLACK)
+            #self.game.display.fill(self.game.BLACK)
+            self.game.display.blit(self.game.img, (0,0))
             self.game.draw_text('Creditos', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 20)
             self.game.draw_text('Sebastian Andrango y Abigail Cabascango', 15, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 + 10)
             self.blit_screen()

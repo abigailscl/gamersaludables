@@ -14,10 +14,9 @@ class Connection():
         print(self.gamenutritionDB.list_collection_names())
 
     #insertar un solo registro
-    def insert_user(self, name):
-        user={"name": name,"lastname":"Andrango","phone":"0958730412"}
+    def insert_user(self, name, lastname, phone):
+        user={"name": name,"lastname":lastname,"phone":phone}
         insertOne=self.collection.insert_one(user)
-        print(name)
 
 #insertar varios registros
 # listUsers =[
