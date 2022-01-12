@@ -1,5 +1,7 @@
 import pymongo
 import dns
+from usuario import Usuario
+from bson.objectid import ObjectId
 
 #coneccion a la base de datos de mongodb atlas
 client = pymongo.MongoClient("mongodb+srv://dbSebastian:12345@cluster0.f5clk.mongodb.net/gamenutrition?retryWrites=true&w=majority")
@@ -7,22 +9,22 @@ gamenutritionDB = client['gamenutrition']
 collection=gamenutritionDB['usuarios']
 
 #imprimir todas las bases de datos
-#print(client.list_database_names())
+print(client.list_database_names())
 
 #imprimir todas las colecciones
-#print(gamenutritionDB.list_collection_names())
+print(gamenutritionDB.list_collection_names())
 
 #insertar un solo registro
-#user={"name":"Sebastian","lastname":"Andrango","phone":"0958730412"}
-#insertOne=collection.insert_one(user)
-#print(insertOne)
+user={"name":"Sebastian","lastname":"Andrango","phone":"0958730412"}
+insertOne=collection.insert_one(user)
+print(insertOne)
 
 #insertar varios registros
-# listUsers =[
-#     {"nombre":"Jose","apellido":"Lopez","telefono":"0995623120"},
-#     {"nombre":"Abigail","apellido":"Cabascango","telefono":"0985412014"},
-#     {"nombre":"Juan","apellido":"Perez","telefono":"0998541023"}
-# ]
+listUsers =[
+    {"nombre":"Jose","apellido":"Lopez","telefono":"0995623120"},
+    {"nombre":"Abigail","apellido":"Cabascango","telefono":"0985412014"},
+    {"nombre":"Juan","apellido":"Perez","telefono":"0998541023"}
+]
 
 # insert=collection.insert_many(listUsers)
 # print(insert)
