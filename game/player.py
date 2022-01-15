@@ -10,8 +10,8 @@ class Player(pygame.sprite.Sprite):
         self.rect.midbottom = (240, 244)
         self.current_frame = 0
         self.last_updated = 0
-        self.velocity = 0
         self.state = 'idle'
+        self.velocity = 0
         self.current_image = self.idle_frames_left[0]
 
     def draw(self, display):

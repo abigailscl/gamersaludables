@@ -17,33 +17,9 @@ class Connection():
     def insert_user(self, name, lastname, phone):
         user={"name": name,"lastname":lastname,"phone":phone}
         insertOne=self.collection.insert_one(user)
-
-#insertar varios registros
-# listUsers =[
-#     {"nombre":"Jose","apellido":"Lopez","telefono":"0995623120"},
-#     {"nombre":"Abigail","apellido":"Cabascango","telefono":"0985412014"},
-#     {"nombre":"Juan","apellido":"Perez","telefono":"0998541023"}
-# ]
-
-# insert=collection.insert_many(listUsers)
-# print(insert)
-
-#eliminar un registro
-#delete={"name":"Sebastian"}
-# deleteOne=collection.delete_many({})
-# print(deleteOne)
-
-#eliminar todos los registros
-# delete=collection.delete_many({})
-# print(delete)
+    
     def print_users(self):
         #recuperar todos los registros
         print('Todos los registros de la tabla usuarios')  
         for users in self.collection.find():
             print(users) 
-
-
-#recuperar registro con una condicion 
-# print('Find documents with condition')  
-# for x in collection.find({"name": "Jose"}):  
-#   print(x) 

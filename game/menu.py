@@ -1,4 +1,5 @@
 import pygame
+from character import Player
 
 class Menu():
     def __init__(self, game):
@@ -24,20 +25,29 @@ class MainMenu(Menu):
         self.optionsx, self.optionsy = self.mid_w, self.mid_h + 50
         self.creditsx, self.creditsy = self.mid_w, self.mid_h + 70
         self.cursor_rect.midtop = (self.startx + self.offset, self.starty)
+        
 
-    def display_menu(self):
+    def display_menu(self):   
         self.run_display = True
+        clock = pygame.time.Clock()
+        moving_sprites = pygame.sprite.Group()
+        player = Player(150,225)
+        moving_sprites.add(player)
         while self.run_display:
             self.game.check_events()
             self.check_input()
-            #self.game.display.fill(self.game.BLACK)
+            moving_sprites.update(0.02)
+            player.animate()
             self.game.display.blit(self.game.img, (0,0))
+            self.game.display.blit(player.image , player.rect )
             self.game.draw_text('Menu', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 20)
             self.game.draw_text("Iniciar juego", 20, self.startx, self.starty)
             self.game.draw_text("Registrarse", 20, self.optionsx, self.optionsy)
             self.game.draw_text("Creditos", 20, self.creditsx, self.creditsy)
             self.draw_cursor()
             self.blit_screen()
+            clock.tick(60)
+
 
 
     def move_cursor(self):

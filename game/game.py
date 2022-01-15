@@ -6,9 +6,10 @@ from register import Regitration
 class Game():
     def __init__(self):
         pygame.init()
+        
         self.running, self.playing = True, False
         self.UP_KEY, self.DOWN_KEY, self.START_KEY, self.BACK_KEY = False, False, False, False
-        self.DISPLAY_W, self.DISPLAY_H = 640, 480
+        self.DISPLAY_W, self.DISPLAY_H = 977, 480
         self.display = pygame.Surface((self.DISPLAY_W,self.DISPLAY_H))
         self.window = pygame.display.set_mode(((self.DISPLAY_W,self.DISPLAY_H)))
         self.font_name = '8-BIT WONDER.TTF'
@@ -17,24 +18,29 @@ class Game():
         self.main_menu = MainMenu(self)
         self.options = OptionsMenu(self)
         self.credits = CreditsMenu(self)
+        
         self.curr_menu = self.main_menu
         self.input_rect = pygame.Rect(200, 50, 30, 30)
         self.color = pygame.Color(self.WHITE)
         self.user_text = ""
         self.registration = Regitration()
-        self.img = pygame.image.load('canva2.bmp')
+        self.img = pygame.image.load('canva3.png')
+
 
     def game_loop(self):
         while self.playing:
             self.check_events()
             if self.START_KEY:
                 self.playing= False
-            #self.display.fill(self.BLACK)
+            #display pantalla
+
             self.display.blit(self.img, (0,0))
+            #llamada a la funcion para empezar el juego 
             self.draw_text('Gracias por jugar', 20, self.DISPLAY_W/2, self.DISPLAY_H/2)
             self.window.blit(self.display, (0,0))
             pygame.display.update()
             self.reset_keys()
+        
 
 
 
