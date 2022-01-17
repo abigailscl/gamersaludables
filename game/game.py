@@ -104,7 +104,7 @@ class Game():
                 if(self.posX > 346 and self.posX < 667 and self.posY > 404 and self.posY < 470):
                     print("Panquetas")
                     self.recipe5_display = True
-                    self.recipes.recipe5(self.playing)
+                    self.recipes.cooking(self.playing)
 
     def check_events(self):
         for event in pygame.event.get():
