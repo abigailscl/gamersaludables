@@ -40,6 +40,8 @@ class Regitration():
 
         Label(self.screen, text = "Registro exitoso", fg = "green", font = ("calibri", 11)).pack()
 
+    def on_closing(self):
+            self.screen.destroy()
 
     def main_screen(self):     
         self.screen = Tk()
@@ -63,5 +65,7 @@ class Regitration():
 
         Label(self.screen, text = "").pack()
         Button(self.screen, text = "Registrar", width = 10, height = 1, command = self.register_user).pack()
+        
 
+        self.screen.protocol("WM_DELETE_WINDOW", self.on_closing)
         self.screen.mainloop()
