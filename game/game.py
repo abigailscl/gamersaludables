@@ -3,6 +3,7 @@ import pygame
 from pygame.locals import*
 from menu import *
 from register import Regitration
+from user import User
 from recipes import *
 
 class Game():
@@ -27,7 +28,8 @@ class Game():
         self.input_rect = pygame.Rect(200, 50, 30, 30)
         self.color = pygame.Color(self.WHITE)
         self.user_text = ""
-        self.registration = Regitration()
+        self.registration = Regitration(self)
+        self.user = User()
         self.img = pygame.image.load('canva3.png')
         self.kitchen = pygame.image.load('kitchen.png')
         self.vamosCocinar = pygame.image.load('vamosCocinar.png')

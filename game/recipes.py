@@ -1,11 +1,15 @@
 import pygame
 from character import Player
-
+from whatsapp import Whatsapp
 from pygame.locals import*
+from datetime import datetime
+
 
 class Recipes():
     def __init__(self, game):
         self.game = game
+        self.time = None
+        self.whatsapp = Whatsapp()
         self.coins = 0
         self.kitchen = pygame.image.load('kitchen1.png')
         self.kitchen = pygame.transform.scale(self.kitchen, (self.game.DISPLAY_W, self.game.DISPLAY_H))
@@ -16,14 +20,14 @@ class Recipes():
         self.recipe2 = pygame.image.load('receta2info.png')
         self.recipe2 = pygame.transform.scale(self.recipe2, (300, 350))
 
-        #self.recipe3 = pygame.image.load('receta3info.png')
-        #self.recipe3 = pygame.transform.scale(self.recipe3, (300, 350))
+        self.recipe3 = pygame.image.load('receta3info.png')
+        self.recipe3 = pygame.transform.scale(self.recipe3, (300, 350))
 
-        #self.recipe4 = pygame.image.load('receta4info.png')
-        #self.recipe4 = pygame.transform.scale(self.recipe4, (300, 350))
+        self.recipe4 = pygame.image.load('receta4info.png')
+        self.recipe4 = pygame.transform.scale(self.recipe4, (300, 350))
 
-        #self.recipe5 = pygame.image.load('receta5info.png')
-        #self.recipe5 = pygame.transform.scale(self.recipe5, (300, 350))
+        self.recipe5 = pygame.image.load('receta5info.png')
+        self.recipe5 = pygame.transform.scale(self.recipe5, (300, 350))
 
         self.button = pygame.image.load('recetaLista.png')
         self.button = pygame.transform.scale(self.button, (150, 75))
@@ -123,6 +127,14 @@ class Recipes():
         pygame.display.update()
         self.game.reset_keys()
 
+    def display_message(self):
+        self.time = datetime.now()
+        self.whatsapp.hour = self.time.hour
+        self.whatsapp.minutes = self.time.minute + 1
+        self.whatsapp.number = self.game.user.phone
+        self.whatsapp.message = " Ingredientes: lechuga tomates cebollas pepino aguacate jugo de limón Receta: En un tazón mezcla la lechuga y el tomate. Agrega pepinos y cebollas. Adorna con aguacate. Agrega un poco dejugo de limón"
+        self.whatsapp.send_mesage()
+
     def check_events_game(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -130,6 +142,7 @@ class Recipes():
                 self.game.curr_menu.run_display = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
+                    self.game.user.points = self.coins
                     self.inicialize()
                     self.inicialize_recipe()
                     self.game.BACK_KEY = True
@@ -143,32 +156,54 @@ class Recipes():
                         self.clean_table()
                         self.x_platillo,  self.y_platillo = 220,150
                         self.x_plato, self.y_plato =  200,220
+                        self.game.user.points = self.coins
+                        self.whatsapp.message = " Ingredientes: lechuga tomates cebollas pepino aguacate jugo de limón Receta: En un tazón mezcla la lechuga y el tomate. Agrega pepinos y cebollas. Adorna con aguacate. Agrega un poco dejugo de limón"
+                        self.display_message()
                         print("receta lista")
                     elif(self.game.recipe2_display ==  True and self.coins >= 350):
                         self.clean_table()
                         self.x_platillo2,  self.y_platillo2 = 220,150
                         self.x_plato, self.y_plato =  200,220
+                        self.game.user.points = self.coins
+                        self.whatsapp.message = "Ingredientes: Pimiento verde tomates cebollas choclo en granos tortilla cilantro queso Receta: Calentar las tortillas en el sartén. Hacer una mezcla de los demás vegetales agregar el queso decorando."
+                        
+                        self.display_message()
                         print("receta lista")
                     elif(self.game.recipe3_display ==  True and self.coins > 50):
                         self.clean_table()
                         self.x_platillo3,  self.y_platillo3 = 220,150
                         self.x_plato, self.y_plato =  200,220
+                        self.game.user.points = self.coins
+                        self.whatsapp.message = "Ingredientes: Avena frutos secos banana almendras jugo de limón Receta: Hacer una mezcla de avena y miel. Incorporar los frutos secos. Adornar con almendras y banana picada."
+
+                        self.display_message()
                         print("receta lista")
                     elif(self.game.recipe4_display ==  True and self.coins > 50):
                         self.clean_table()
                         self.x_platillo4,  self.y_platillo4 = 220,150
                         self.x_plato, self.y_plato =  200,220
+                        self.game.user.points = self.coins
+                        self.whatsapp.message = "Ingredientes: Pollo en cuadritos tomates cebollas pimiento verde jugo de limón. Receta: Poner el pollo, el pimiento, jugo de limón y cebolla en un tazón por 30minutos. Poner en un palillo todas las verduras y el pollo. Asar hasta que el pollo este cocido"
+                        
+                        self.display_message()
+                        print("receta lista")
                     elif(self.game.recipe5_display ==  True and self.coins > 50):
                         self.clean_table()
                         self.x_platillo5,  self.y_platillo5 = 220,150
                         self.x_plato, self.y_plato =  200,220
+                        self.game.user.points = self.coins
+                        self.whatsapp.message = "Ingredientes: Fresas banana avena jugo de naranja Receta: Hacer una masa con la banana, la avena y el jugo de naranja. Cocinar en una sartén la masa. Adornar con fresas."
+
+                        self.display_message()
                         print("receta lista")
+                    #self.game.user.actualizar(self.game.user.id, self.game.user.name, self.game.user.lastname, self.game.user.phone, self.game.user.points)
                     self.inicialize_recipe()
                 elif(self.game.posX >= 142 and self.game.posX <= 172 and self.game.posY >= 228 and self.game.posY <= 265):
                     self.x_jugoLimon, self.y_jugoLimon = 350,250  
                     self.x_mezcla, self.y_mezcla = self.x_mezcla + 20 , self.y_mezcla
                     self.coins =  self.coins + 50
                     print("update")
+                    
                 elif(self.game.posX >= 105 and self.game.posX <= 122 and self.game.posY >= 251 and self.game.posY <= 265):
                     self.x_pepino,  self.y_pepino = self.x_mezcla , self.y_mezcla 
                     self.x_mezcla , self.y_mezcla = self.x_mezcla + 20 , self.y_mezcla 
@@ -222,7 +257,9 @@ class Recipes():
                 if self.x_mezcla > 495:
                     self.x_mezcla = 370
                     self.y_mezcla = self.y_mezcla + 10
+                
                 pygame.display.update()
+
     def inicialize_recipe(self):
         self.game.recipe1_display, self.game.recipe2_display, self.game.recipe3_display, self.game.recipe4_display, self.game.recipe5_display = False, False, False, False, False
         
@@ -248,6 +285,7 @@ class Recipes():
         elif self.game.recipe3_display ==  True:
             self.x_recipe1, self.y_recipe1 = self.game.DISPLAY_W, self.game.DISPLAY_H
             self.x_recipe2, self.y_recipe2 = self.game.DISPLAY_W, self.game.DISPLAY_H
+            self.x_recipe3, self.y_recipe3 = 650,50 
             self.x_sarten, self.y_sarten = 527,225
             self.x_recipe4, self.y_recipe4 = self.game.DISPLAY_W, self.game.DISPLAY_H
             self.x_recipe5, self.y_recipe5 = self.game.DISPLAY_W, self.game.DISPLAY_H
@@ -333,6 +371,10 @@ class Recipes():
             self.game.display.blit(self.kitchen, (0,0))
             self.game.display.blit(self.recipe1, (self.x_recipe1, self.y_recipe1))
             self.game.display.blit(self.recipe2, (self.x_recipe2, self.y_recipe2))
+            self.game.display.blit(self.recipe3, (self.x_recipe3, self.y_recipe3))
+            self.game.display.blit(self.recipe4, (self.x_recipe4, self.y_recipe4))
+            self.game.display.blit(self.recipe5, (self.x_recipe5, self.y_recipe5))
+
             self.game.display.blit(self.button, (self.x_button, self.y_button))
             self.game.display.blit(self.tazon, (self.x_tazon,  self.y_tazon) )
             self.game.display.blit(player.image , player.rect )

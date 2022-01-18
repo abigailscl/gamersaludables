@@ -1,44 +1,53 @@
 from tkinter import *
-from dataBaseConnection import Connection
+from user import User
 
 
 class Regitration():
 
-    def __init__(self):
+    def __init__(self, game):
         self.screen = None
-        self.connection = Connection()
+        self.connection = game
 
         self.username_info = None
-        self.lastname_info = None
         self.password_info = None
 
         self.username_entry = None
-        self.lastname_entry = None
         self.password_entry = None
 
         self.username = None
-        self.lastname = None
         self.password = None
 
         
 
     def register_user(self):
         self.username_info = self.username.get()
-        self.lastname_info = self.lastname.get()
         self.password_info = self.password.get()
-
-        self.connection.insert_user(self.username_info, self.username_info, self.password_info)
-
-        file = open(self.username_info+".text", "w")
-        file.write(self.username_info +"\n")
-        file.write(self.password_info)
-        file.close()
-
-        self.username_entry.delete(0, END)
-        self.lastname_entry.delete(0, END)
-        self.password_entry.delete(0, END)
-
-        Label(self.screen, text = "Registro exitoso", fg = "green", font = ("calibri", 11)).pack()
+        if self.connection.user.verificar_usuario(self.username_info) and self.connection.user.ver_phone(self.password_info):
+            self.connection.user.name = self.username_info
+            self.connection.user.lastname = "lastnameprotected"
+            self.connection.user.phone =  self.password_info
+            print(self.connection.user.phone )
+            self.connection.user.points = self.connection.user.buscar(self.username_info)
+            
+            Label(self.screen, text = "Ingreso exitoso", fg = "green", font = ("calibri", 11)).pack()
+            self.username_entry.delete(0, END)
+            self.password_entry.delete(0, END)
+            self.screen.destroy()
+            
+        elif self.connection.user.verificar_usuario(self.username_info) == False and self.connection.user.ver_phone(self.password_info):
+            self.connection.user.id = self.connection.user.insertar(self.username_info,"-", self.password_info, 0)
+            self.connection.user.name = self.username_info
+            self.connection.user.lastname = ""
+            self.connection.user.phone = self.password_info
+            self.connection.user.points = 80
+            self.username_entry.delete(0, END)
+            self.password_entry.delete(0, END)
+            Label(self.screen, text = "Registro exitoso, cierre esta ventana", fg = "green", font = ("calibri", 11)).pack()
+        else:
+            self.username_entry.delete(0, END)
+            self.password_entry.delete(0, END)
+            Label(self.screen, text = "Número de celular iválido", fg = "red", font = ("calibri", 11)).pack()
+        
 
     def on_closing(self):
             self.screen.destroy()
@@ -55,16 +64,12 @@ class Regitration():
         self.username_entry = Entry(self.screen, textvariable = self.username)
         self.username_entry.pack()
 
-        Label(self.screen, text = "Apellido").pack()
-        self.lastname_entry = Entry(self.screen, textvariable = self.lastname)
-        self.lastname_entry.pack()
-
         Label(self.screen, text = "Celular ").pack()
         self.password_entry = Entry(self.screen, textvariable = self.password)
         self.password_entry.pack()
 
         Label(self.screen, text = "").pack()
-        Button(self.screen, text = "Registrar", width = 10, height = 1, command = self.register_user).pack()
+        Button(self.screen, text = "Ingresar", width = 10, height = 1, command = self.register_user).pack()
         
 
         self.screen.protocol("WM_DELETE_WINDOW", self.on_closing)

@@ -42,7 +42,7 @@ class MainMenu(Menu):
             self.game.display.blit(player.image , player.rect )
             self.game.draw_text('Menu', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 20)
             self.game.draw_text("Iniciar juego", 20, self.startx, self.starty)
-            self.game.draw_text("Registrarse", 20, self.optionsx, self.optionsy)
+            self.game.draw_text("Puntaje", 20, self.optionsx, self.optionsy)
             self.game.draw_text("Creditos", 20, self.creditsx, self.creditsy)
             self.draw_cursor()
             self.blit_screen()
@@ -96,24 +96,21 @@ class OptionsMenu(Menu):
                 self.run_display = False
             #self.game.display.fill(self.game.BLACK)
             self.game.display.blit(self.game.img, (0,0))
-            self.game.register_user()
+        
 
 
-    #def display_menu(self):
-     #   self.run_display = True
-      #  while self.run_display:
-       #     self.game.check_events()
-        #    if self.game.BACK_KEY:
-         #       self.game.curr_menu = self.game.main_menu
-          #  self.game.display.blit(self.game.img, (0,0))    
-           # #self.game.register_user()
-            ##self.run_display = False
-
-
-    def check_input(self):
-        if self.game.START_KEY:
-            self.game.user_text = ""
-           # self.game.connection.print_users()
+    def display_menu(self):
+        self.run_display = True
+        while self.run_display:
+            self.game.check_events()
+            if self.game.BACK_KEY:
+                self.game.curr_menu = self.game.main_menu
+                self.run_display = False
+            #self.game.display.fill(self.game.BLACK)
+            self.game.display.blit(self.game.img, (0,0))
+            self.game.draw_text('Puntaje', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 20)
+            self.game.draw_text("Puntos " + str(self.game.user.points), 15, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 + 10)
+            self.blit_screen()
             
         
 class CreditsMenu(Menu):
