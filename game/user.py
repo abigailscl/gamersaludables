@@ -60,11 +60,14 @@ class User():
         return resultado.modified_count
 
     #Mostar datos
-    def obtener(self):
+    """def obtener(self):
         usuarios=self.obtener_colec()
-        return usuarios.find()
+        return usuarios.find()"""
+    
     
     def verificar_usuario(self, name):
+        usuarios=self.obtener_colec()
+        usuarios.find_one({ "nombre": name })
         for usuario in self.obtener():
             _id = usuario["_id"]
             _name = usuario["nombre"]
