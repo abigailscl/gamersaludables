@@ -95,6 +95,25 @@ class Recipes():
         self.plato = pygame.image.load('images/plato.png')
         self.plato = pygame.transform.scale(self.plato, (210, 90))
         
+        #ingredientes dulces
+        self.jugoNaranja = pygame.image.load('images/jugoNaranja.png')
+        self.jugoNaranja = pygame.transform.scale(self.jugoNaranja, (50, 60))
+        
+        self.almendra = pygame.image.load('images/almendra.png')
+        self.almendra = pygame.transform.scale(self.almendra, (40, 35))
+        
+        self.banana = pygame.image.load('images/banana.png')
+        self.banana = pygame.transform.scale(self.banana, (40, 35))
+        
+        self.fresas = pygame.image.load('images/fresas.png')
+        self.fresas = pygame.transform.scale(self.fresas, (40, 35))
+        
+        self.avena = pygame.image.load('images/avena.png')
+        self.avena = pygame.transform.scale(self.avena, (55, 50))
+        
+        self.frutos_secos = pygame.image.load('images/frutossecos.png')
+        self.frutos_secos = pygame.transform.scale(self.frutos_secos, (55, 50))
+        ##
         self.x_mezcla, self.y_mezcla = self.game.DISPLAY_W, self.game.DISPLAY_H
         self.x_button, self.y_button = self.game.DISPLAY_W, self.game.DISPLAY_H
         self.x_aguacate,  self.y_aguacate = self.game.DISPLAY_W, self.game.DISPLAY_H
@@ -110,6 +129,12 @@ class Recipes():
         self.x_cilantro, self.y_cilantro = self.game.DISPLAY_W, self.game.DISPLAY_H
         self.x_tortilla, self.y_tortilla = self.game.DISPLAY_W, self.game.DISPLAY_H
         self.x_pollo, self.y_pollo = self.game.DISPLAY_W, self.game.DISPLAY_H
+        self.x_almendra, self.y_almendra = self.game.DISPLAY_W, self.game.DISPLAY_H
+        self.x_frutos_secos, self.y_frutos_secos = self.game.DISPLAY_W, self.game.DISPLAY_H
+        self.x_banana, self.y_banana = self.game.DISPLAY_W, self.game.DISPLAY_H
+        self.x_fresas, self.y_fresas = self.game.DISPLAY_W, self.game.DISPLAY_H
+        self.x_avena, self.y_avena = self.game.DISPLAY_W, self.game.DISPLAY_H
+        self.x_jugoNaranja, self.y_jugoNaranja = self.game.DISPLAY_W, self.game.DISPLAY_H
         
         self.x_recipe1, self.y_recipe1 = self.game.DISPLAY_W, self.game.DISPLAY_H
         self.x_recipe2, self.y_recipe2 = self.game.DISPLAY_W, self.game.DISPLAY_H
@@ -133,6 +158,37 @@ class Recipes():
             self.x_mezcla, self.y_mezcla = self.x_mezcla + 20 , self.y_mezcla
             self.coins =  self.coins + 50
             print("update")
+        elif(self.game.posX >= 104 and self.game.posX <= 127 and self.game.posY >= 256 and self.game.posY <= 281):
+            self.x_almendra,  self.y_almendra = self.x_mezcla , self.y_mezcla 
+            self.x_mezcla, self.y_mezcla = self.x_mezcla + 20 , self.y_mezcla
+            self.coins =  self.coins + 50
+            print("update")
+        elif(self.game.posX >= 197 and self.game.posX <= 227 and self.game.posY >= 247 and self.game.posY <= 275):  
+            self.x_frutos_secos,  self.y_frutos_secos = self.x_mezcla , self.y_mezcla 
+            self.x_mezcla, self.y_mezcla = self.x_mezcla + 25 , self.y_mezcla
+            self.coins =  self.coins + 50
+            print("update")    
+        elif(self.game.posX >= 138 and self.game.posX <= 159 and self.game.posY >= 284 and self.game.posY <= 305):  
+            self.x_fresas,  self.y_fresas = self.x_mezcla , self.y_mezcla 
+            self.x_mezcla, self.y_mezcla = self.x_mezcla + 20 , self.y_mezcla
+            self.coins =  self.coins + 50
+            print("update")  
+        elif(self.game.posX >= 249 and self.game.posX <= 275 and self.game.posY >= 278 and self.game.posY <= 301):  
+            self.x_banana,  self.y_banana = self.x_mezcla , self.y_mezcla 
+            self.x_mezcla, self.y_mezcla = self.x_mezcla + 20 , self.y_mezcla
+            self.coins =  self.coins + 50
+            print("update")  
+        elif(self.game.posX >= 296 and self.game.posX <= 331 and self.game.posY >= 260 and self.game.posY <= 290):  
+            self.x_avena,  self.y_avena = self.x_mezcla , self.y_mezcla 
+            self.x_mezcla, self.y_mezcla = self.x_mezcla + 20 , self.y_mezcla
+            self.coins =  self.coins + 50
+            print("update")  
+        elif(self.game.posX >= 265 and self.game.posX <= 285 and self.game.posY >= 217 and self.game.posY <= 259):  
+            self.x_jugoNaranja,  self.y_jugoNaranja = 354,214
+            self.x_mezcla, self.y_mezcla = self.x_mezcla + 20 , self.y_mezcla
+            self.coins =  self.coins + 50
+            print("update")  
+         
     
     def salty_recipe(self):
         if(self.game.posX >= 142 and self.game.posX <= 172 and self.game.posY >= 228 and self.game.posY <= 265):
@@ -216,7 +272,7 @@ class Recipes():
             self.x_plato, self.y_plato =  200,220
             self.game.user.points = self.coins
             self.whatsapp.message = " Ingredientes: lechuga tomates cebollas pepino aguacate jugo de limón Receta: En un tazón mezcla la lechuga y el tomate. Agrega pepinos y cebollas. Adorna con aguacate. Agrega un poco dejugo de limón"
-            self.display_message()
+            #self.display_message()
             print("receta lista")
             
         elif(self.game.recipe2_display ==  True and self.coins >= 350):
@@ -225,34 +281,34 @@ class Recipes():
             self.x_plato, self.y_plato =  200,220
             self.game.user.points = self.coins
             self.whatsapp.message = "Ingredientes: Pimiento verde tomates cebollas choclo en granos tortilla cilantro queso Receta: Calentar las tortillas en el sartén. Hacer una mezcla de los demás vegetales agregar el queso decorando."
-            self.display_message()
+            #self.display_message()
             print("receta lista") 
                        
-        elif(self.game.recipe3_display ==  True and self.coins > 50):
+        elif(self.game.recipe3_display ==  True and self.coins > 250):
             
             self.x_platillo3,  self.y_platillo3 = 220,150
             self.x_plato, self.y_plato =  200,220
             self.game.user.points = self.coins
             self.whatsapp.message = "Ingredientes: Avena frutos secos banana almendras jugo de limón Receta: Hacer una mezcla de avena y miel. Incorporar los frutos secos. Adornar con almendras y banana picada."
-            self.display_message()
+            #self.display_message()
             print("receta lista")
             
-        elif(self.game.recipe4_display ==  True and self.coins > 50):
+        elif(self.game.recipe4_display ==  True and self.coins > 250):
             
             self.x_platillo4,  self.y_platillo4 = 220,150
             self.x_plato, self.y_plato =  200,220
             self.game.user.points = self.coins
             self.whatsapp.message = "Ingredientes: Pollo en cuadritos tomates cebollas pimiento verde jugo de limón. Receta: Poner el pollo, el pimiento, jugo de limón y cebolla en un tazón por 30minutos. Poner en un palillo todas las verduras y el pollo. Asar hasta que el pollo este cocido"
-            self.display_message()
+            #self.display_message()
             print("receta lista")
             
-        elif(self.game.recipe5_display ==  True and self.coins > 50):
+        elif(self.game.recipe5_display ==  True and self.coins > 100):
             
             self.x_platillo5,  self.y_platillo5 = 220,150
             self.x_plato, self.y_plato =  200,220
             self.game.user.points = self.coins
             self.whatsapp.message = "Ingredientes: Fresas banana avena jugo de naranja Receta: Hacer una masa con la banana, la avena y el jugo de naranja. Cocinar en una sartén la masa. Adornar con fresas."
-            self.display_message()
+            #self.display_message()
             print("receta lista")
             #self.game.user.actualizar(self.game.user.id, self.game.user.name, self.game.user.lastname, self.game.user.phone, self.game.user.points)
     
@@ -264,7 +320,7 @@ class Recipes():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
                     self.game.user.points = self.coins
-                    self.inicialize()
+                    self.clean_table()
                     self.inicialize_recipe()
                     self.game.BACK_KEY = True
                 self.game.user_text += event.unicode
@@ -284,12 +340,17 @@ class Recipes():
                     self.y_mezcla = self.y_mezcla + 10
                 
                 pygame.display.update()
-
+    
     def inicialize_recipe(self):
         self.game.recipe1_display, self.game.recipe2_display, self.game.recipe3_display, self.game.recipe4_display, self.game.recipe5_display = False, False, False, False, False
         
     def inicialize(self):
+        
         self.coins = 0
+        self.x_mezcla, self.y_mezcla = 370,230
+        self.x_button, self.y_button = 740,400
+        self.x_tazon,  self.y_tazon =  370,240
+        
         if self.game.recipe1_display ==  True:
             self.x_recipe1, self.y_recipe1 = 650,50
 
@@ -310,11 +371,9 @@ class Recipes():
             self.x_recipe5, self.y_recipe5 = 650,50 
                
         if self.game.recipe4_display or self.game.recipe2_display or self.game.recipe1_display:
-            self.x_mezcla, self.y_mezcla = 370,230
-            self.x_button, self.y_button = 740,400
+           
             self.x_aguacate,  self.y_aguacate = 219,235
             self.x_tomate,  self.y_tomate = 183,237
-            self.x_tazon,  self.y_tazon =  370,240
             self.x_lechuga,  self.y_lechuga = 160,260
             self.x_cebolla,  self.y_cebolla = 210,260
             self.x_pepino,  self.y_pepino = 98,250
@@ -323,8 +382,19 @@ class Recipes():
             self.x_maiz, self.y_maiz = 265, 260
             self.x_cheddar, self.y_cheddar = 300, 248
             self.x_cilantro, self.y_cilantro = 303, 280
+            
+        self.x_jugoNaranja, self.y_jugoNaranja = self.game.DISPLAY_W, self.game.DISPLAY_H
+            
         if self.game.recipe3_display or self.game.recipe5_display:
             #ingredientes dulces
+            self.x_almendra,  self.y_almendra = 98,250
+            self.x_frutos_secos,  self.y_frutos_secos = 183,237
+            self.x_jugoLimon,  self.y_jugoLimon =  140,225
+            self.x_banana, self.y_banana = 240, 270
+            self.x_fresas, self.y_fresas = 131, 275
+            self.x_avena, self.y_avena = 285, 250
+            self.x_jugoNaranja, self.y_jugoNaranja = 240,210
+                
             print("ingredintes dulces")
         
         self.x_platillo,  self.y_platillo =  self.game.DISPLAY_W, self.game.DISPLAY_H
@@ -348,15 +418,27 @@ class Recipes():
         self.x_cilantro, self.y_cilantro = self.game.DISPLAY_W, self.game.DISPLAY_H
         self.x_tortilla, self.y_tortilla = self.game.DISPLAY_W, self.game.DISPLAY_H
         self.x_pollo, self.y_pollo = self.game.DISPLAY_W, self.game.DISPLAY_H
+        self.x_almendra,  self.y_almendra = self.game.DISPLAY_W, self.game.DISPLAY_H
+        self.x_frutos_secos,  self.y_frutos_secos = self.game.DISPLAY_W, self.game.DISPLAY_H
+        self.x_banana, self.y_banana = self.game.DISPLAY_W, self.game.DISPLAY_H
+        self.x_fresas, self.y_fresas = self.game.DISPLAY_W, self.game.DISPLAY_H
+        self.x_avena, self.y_avena = self.game.DISPLAY_W, self.game.DISPLAY_H
+        self.x_jugoNaranja, self.y_jugoNaranja = self.game.DISPLAY_W, self.game.DISPLAY_H
         self.x_sarten, self.y_sarten = self.game.DISPLAY_W, self.game.DISPLAY_H
         self.x_recipe1, self.y_recipe1 = self.game.DISPLAY_W, self.game.DISPLAY_H
         self.x_recipe2, self.y_recipe2 = self.game.DISPLAY_W, self.game.DISPLAY_H
-        self.x_sarten, self.y_sarten = self.game.DISPLAY_W, self.game.DISPLAY_H
         self.x_recipe4, self.y_recipe4 = self.game.DISPLAY_W, self.game.DISPLAY_H
+        self.x_recipe3, self.y_recipe3 = self.game.DISPLAY_W, self.game.DISPLAY_H
         self.x_recipe5, self.y_recipe5 = self.game.DISPLAY_W, self.game.DISPLAY_H
-        self.x_tortilla, self.y_tortilla = self.game.DISPLAY_W, self.game.DISPLAY_H
         self.x_sarten, self.y_sarten = self.game.DISPLAY_W, self.game.DISPLAY_H 
         self.x_preparando, self.y_preparando = self.game.DISPLAY_W, self.game.DISPLAY_H
+        self.x_platillo,  self.y_platillo =  self.game.DISPLAY_W, self.game.DISPLAY_H
+        self.x_platillo2,  self.y_platillo2 =  self.game.DISPLAY_W, self.game.DISPLAY_H
+        self.x_platillo3,  self.y_platillo3 =  self.game.DISPLAY_W, self.game.DISPLAY_H
+        self.x_platillo4,  self.y_platillo4 =  self.game.DISPLAY_W, self.game.DISPLAY_H
+        self.x_platillo5,  self.y_platillo5 =  self.game.DISPLAY_W, self.game.DISPLAY_H
+        self.x_plato,  self.y_plato =  self.game.DISPLAY_W, self.game.DISPLAY_H
+        
 
     def cooking(self, game ):
         game = False
@@ -384,7 +466,8 @@ class Recipes():
             self.game.display.blit(self.tazon, (self.x_tazon,  self.y_tazon) )
             self.game.display.blit(player.image , player.rect )
             self.game.display.blit(self.plato, (self.x_plato, self.y_plato))
-
+            
+            self.game.display.blit(self.jugoNaranja, (self.x_jugoNaranja, self.y_jugoNaranja))
             self.game.display.blit(self.jugoLimon, (self.x_jugoLimon,  self.y_jugoLimon) ) 
             self.game.display.blit(self.pepino, (self.x_pepino,  self.y_pepino) ) 
             self.game.display.blit(self.lechuga, (self.x_lechuga,  self.y_lechuga) ) 
@@ -398,6 +481,11 @@ class Recipes():
             self.game.display.blit(self.sarten, (self.x_sarten,  self.y_sarten) ) 
             self.game.display.blit(self.tortilla, (self.x_tortilla,  self.y_tortilla) )
             self.game.display.blit(self.pollo, (self.x_pollo,  self.y_pollo) )
+            self.game.display.blit(self.frutos_secos, (self.x_frutos_secos,  self.y_frutos_secos))
+            self.game.display.blit(self.almendra, (self.x_almendra,  self.y_almendra) )
+            self.game.display.blit(self.fresas, (self.x_fresas,  self.y_fresas) )
+            self.game.display.blit(self.avena, (self.x_avena,  self.y_avena) )
+            self.game.display.blit(self.banana, (self.x_banana,  self.y_banana) )
             
             self.game.display.blit(self.preparando, (self.x_preparando, self.y_preparando))
 
@@ -410,8 +498,3 @@ class Recipes():
             self.game.window.blit(self.game.display, (0,0))
             pygame.display.update()
             self.game.reset_keys()
-        
-
-
-
-
